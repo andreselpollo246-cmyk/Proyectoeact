@@ -12,6 +12,7 @@ export interface Usuario {
 interface AuthContextType {
   user: Usuario | null;
   isAuthenticated: boolean;
+  isAdmin: boolean;
   loginSimulado: (correo: string, rol: RolUsuario) => void;
   logout: () => void;
 }
@@ -38,7 +39,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: !!user, loginSimulado, logout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated: !!user, isAdmin: user?.rol === 'Administrador', loginSimulado, logout }}>
       {children}
     </AuthContext.Provider>
   );

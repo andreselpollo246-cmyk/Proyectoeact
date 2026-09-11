@@ -1,38 +1,15 @@
-import { NavLink  } from 'react-router-dom';
-import './Navbar.css';
- 
-export default function Navbar() {
+import { Link } from 'react-router-dom';
+
+export default function NavBar() {
   return (
-    <header className="navbar header">
-        <h1>SpaceHub</h1>
+    <header>
+      <div>
+        <span>SENA SpaceHub</span>
         <nav>
-            <NavLink
-                to="/dashboard"
-                className={({ isActive }) => isActive ? 'nav-active' : 'nav-item'}>
-                Dashboard
-            </NavLink>
-            <NavLink
-            to="/Inventario"
-             className={({ isActive }) => isActive ? 'nav-active' : 'nav-item'}>
-            Inventario
-            </NavLink>
-            <NavLink
-            to="/Prestamos"
-             className={({ isActive }) => isActive ? 'nav-active' : 'nav-item'}>
-            Prestamos
-            </NavLink>
-            <NavLink
-            to="/Inventario"
-             className={({ isActive }) => isActive ? 'nav-active' : 'nav-item'}>
-            Inventario
-            </NavLink>
-            <NavLink
-            to="/Ticketera"
-             className={({ isActive }) => isActive ? 'nav-active' : 'nav-item'}>
-            Ticketera
-            </NavLink>
-      </nav>
+          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/inventario">Inventario Equipos</Link>
+        </nav>
+      </div>
     </header>
   );
 }
- 

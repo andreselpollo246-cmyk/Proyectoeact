@@ -1,5 +1,4 @@
 import { useState, type FormEvent, type ChangeEvent } from "react";
-import "./RegistroUsuario.css";
 
 interface RegistroData {
   nombreCompleto: string;
