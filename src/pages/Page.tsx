@@ -3,9 +3,9 @@ import RegistroForm from '../components/Registro/RegistroUsuario';
 
 export function RegistroPage() {
   return (
-    <main>
+    <main className="auth-page">
       <RegistroForm />
-      <Link to="/login">Volver al inicio de sesión</Link>
+      <Link className="auth-footer" to="/login">Volver al inicio de sesión</Link>
     </main>
   );
 }

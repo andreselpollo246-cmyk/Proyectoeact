@@ -25,22 +25,24 @@ export default function RegistroForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Registrarse</h1>
+    <form className="auth-card form-stack" onSubmit={handleSubmit}>
+      <span className="eyebrow">NUEVO USUARIO</span>
+      <h2>Crear cuenta</h2>
+      <p className="auth-subtitle">Regístrate para acceder a SpaceHub.</p>
 
-      <label>Nombre completo</label>
-      <input name="nombreCompleto" value={data.nombreCompleto} onChange={handleChange} />
+      <div className="field"><label>Nombre completo</label>
+      <input required name="nombreCompleto" value={data.nombreCompleto} onChange={handleChange} /></div>
 
-      <label>Correo institucional</label>
-      <input name="correoInstitucional" value={data.correoInstitucional} onChange={handleChange} />
+      <div className="field"><label>Correo institucional</label>
+      <input required type="email" name="correoInstitucional" value={data.correoInstitucional} onChange={handleChange} /></div>
 
-      <label>Rol</label>
-      <input name="rol" value={data.rol} onChange={handleChange} />
+      <div className="field"><label>Rol</label>
+      <input required name="rol" value={data.rol} onChange={handleChange} /></div>
 
-      <label>Número de ficha</label>
-      <input name="numeroFicha" value={data.numeroFicha} onChange={handleChange} />
+      <div className="field"><label>Número de ficha</label>
+      <input required name="numeroFicha" value={data.numeroFicha} onChange={handleChange} /></div>
 
-      <button type="submit">Registrarme</button>
+      <button className="primary-button" type="submit">Registrarme</button>
     </form>
   );
 }

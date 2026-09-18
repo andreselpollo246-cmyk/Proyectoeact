@@ -12,23 +12,23 @@ export default function MainLayout() {
   };
 
   return (
-    <div>
+    <div className="app-shell">
       <NavBar />
-      <div>
-        <div>
-          <span>Sesión Activa:</span>
+      <div className="session-bar">
+        <div className="session-info">
+          <span className="session-dot" />
+          <span className="session-label">Sesión activa</span>
           <strong>{user?.nombre || 'Usuario Autenticado'}</strong>
-          <span>
-            {user?.rol || 'Rol'}
-          </span>
+          <span className="role-pill">{user?.rol || 'Rol'}</span>
         </div>
         <button
+          className="logout-button"
           onClick={handleLogout}
         >
-          Cerrar Sesión
+          Salir
         </button>
       </div>
-      <main>
+      <main className="content-shell">
         <Outlet />
       </main>
     </div>

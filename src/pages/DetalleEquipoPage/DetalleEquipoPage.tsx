@@ -36,15 +36,15 @@ export default function DetalleEquipoPage() {
     }
   };
 
-  if (!equipo && !error) return <div>Cargando recurso...</div>;
+  if (!equipo && !error) return <div className="loading-state">Cargando recurso...</div>;
 
   return (
-    <div>
-      <h2>Editar Equipo (PUT)</h2>
-      <p>Placa SENA: <span>{placaSena}</span></p>
-      {error && <div>{error}</div>}
-      <form onSubmit={handleUpdate}>
-        <div>
+    <div className="page-section form-page">
+      <span className="eyebrow">INVENTARIO / EDITAR</span><h1>Editar equipo</h1>
+      <p className="page-lead">Placa SENA: <strong>{placaSena}</strong></p>
+      {error && <div className="form-error">{error}</div>}
+      <form className="form-card form-grid" onSubmit={handleUpdate}>
+        <div className="field">
           <label>Memoria RAM</label>
           <select value={ram} onChange={(e) => setRam(e.target.value)}>
             <option value="8GB DDR4">8GB DDR4</option>
@@ -52,18 +52,18 @@ export default function DetalleEquipoPage() {
             <option value="32GB DDR5">32GB DDR5</option>
           </select>
         </div>
-        <div>
+        <div className="field">
           <label>Estado Técnico</label>
           <select value={estado} onChange={(e) => setEstado(e.target.value as 'Operativo' | 'En Mantenimiento')}>
             <option value="Operativo">Operativo</option>
             <option value="En Mantenimiento">En Mantenimiento</option>
           </select>
         </div>
-        <div>
+        <div className="field full-width">
           <label>Ambiente Asignado</label>
           <input type="text" value={ambiente} onChange={(e) => setAmbiente(e.target.value)} />
         </div>
-        <div>
+        <div className="form-actions full-width">
           <button type="button" onClick={() => navigate('/inventario')}>Volver</button>
           <button type="submit">Actualizar Recurso (PUT)</button>
         </div>

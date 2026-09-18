@@ -23,21 +23,21 @@ export default function NuevoEquipoPage() {
   };
 
   return (
-    <div>
-      <h2>Registrar Nuevo Equipo (POST)</h2>
-      <p>Utilizando equiposService.create()</p>
-      {error && <div>{error}</div>}
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="page-section form-page">
+      <span className="eyebrow">INVENTARIO / NUEVO</span><h1>Registrar nuevo equipo</h1>
+      <p className="page-lead">Añade un recurso al inventario tecnológico.</p>
+      {error && <div className="form-error">{error}</div>}
+      <form className="form-card form-grid" onSubmit={handleSubmit}>
+        <div className="field">
           <label>Placa SENA</label>
           <input type="text" required placeholder="SENA-1006" value={placaSena} onChange={(e) => setPlacaSena(e.target.value)} />
         </div>
-        <div>
+        <div className="field">
           <label>Marca / Modelo</label>
           <input type="text" required placeholder="Lenovo ThinkPad L14 G3" value={marcaModelo} onChange={(e) => setMarcaModelo(e.target.value)} />
         </div>
-        <div>
-          <div>
+        <div className="field">
+          <div className="field">
             <label>Memoria RAM</label>
             <select value={ram} onChange={(e) => setRam(e.target.value)}>
               <option value="8GB DDR4">8GB DDR4</option>
@@ -45,7 +45,7 @@ export default function NuevoEquipoPage() {
               <option value="32GB DDR5">32GB DDR5</option>
             </select>
           </div>
-          <div>
+          <div className="field full-width">
             <label>Estado Inicial</label>
             <select value={estado} onChange={(e) => setEstado(e.target.value as 'Operativo' | 'En Mantenimiento')}>
               <option value="Operativo">Operativo</option>
@@ -53,7 +53,7 @@ export default function NuevoEquipoPage() {
             </select>
           </div>
         </div>
-        <div>
+        <div className="form-actions full-width">
           <label>Ambiente Asignado</label>
           <input type="text" required value={ambiente} onChange={(e) => setAmbiente(e.target.value)} />
         </div>

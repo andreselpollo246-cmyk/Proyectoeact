@@ -25,23 +25,28 @@ export default function LoginPage() {
   };
 
   return (
-    <div>
-      <h2>Iniciar Sesión API SENA</h2>
-      {error && <div>{error}</div>}
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="auth-page">
+      <div className="auth-decoration"><span>SENA</span><strong>SpaceHub</strong><p>Gestiona tu inventario<br />de forma inteligente.</p></div>
+      <div className="auth-card">
+        <span className="eyebrow">ACCESO SEGURO</span>
+        <h2>Iniciar sesión</h2>
+        <p className="auth-subtitle">Ingresa a tu espacio de gestión SENA.</p>
+      {error && <div className="form-error">{error}</div>}
+      <form className="form-stack" onSubmit={handleSubmit}>
+        <div className="field">
           <label htmlFor="loginEmail">Correo Institucional</label>
           <input id="loginEmail" type="email" required autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="roberto.gomez@sena.edu.co" />
         </div>
-        <div>
+        <div className="field">
           <label htmlFor="loginPassword">Contraseña</label>
           <input id="loginPassword" type="password" required autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" />
         </div>
-        <button type="submit" disabled={loading}>
+        <button className="primary-button" type="submit" disabled={loading}>
           {loading ? 'Autenticando...' : 'Ingresar y Obtener JWT'}
         </button>
       </form>
-      <p><Link to="/registro">Crear una cuenta</Link></p>
+      <p className="auth-footer">¿Aún no tienes cuenta? <Link to="/registro">Crear una cuenta</Link></p>
+      </div>
     </div>
   );
 }

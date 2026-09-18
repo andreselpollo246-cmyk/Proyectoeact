@@ -35,25 +35,25 @@ export default function EquiposPage() {
   };
 
   return (
-    <div>
-      <div>
+    <div className="page-section">
+      <div className="page-heading">
         <div>
-          <h2>Inventario de Equipos SENA</h2>
+          <span className="eyebrow">RECURSOS TECNOLÓGICOS</span><h1>Inventario de equipos</h1>
           <p>Datos obtenidos a través de la capa de servicio (equiposService.ts)</p>
         </div>
         {isAdmin && (
           <Link to="/inventario/nuevo">
-            + Registrar Equipo (POST)
+            + Registrar equipo
           </Link>
         )}
       </div>
 
-      {error && <div>{error}</div>}
+      {error && <div className="form-error">{error}</div>}
 
       {loading ? (
-        <div>Cargando inventario...</div>
+        <div className="loading-state">Cargando inventario...</div>
       ) : (
-        <div>
+        <div className="table-card">
           <table>
             <thead>
               <tr>
