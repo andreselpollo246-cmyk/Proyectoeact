@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 export default function LoginPage() {
@@ -7,7 +7,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const { loginSimulado } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -15,8 +15,8 @@ export default function LoginPage() {
     setError(null);
     setLoading(true);
     try {
-      loginSimulado(email, 'Aprendiz');
-      navigate('/dashboard');
+      await login(email, password);
+      navigate('/dashboard', { replace: true });
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error al iniciar sesión');
     } finally {
@@ -41,6 +41,7 @@ export default function LoginPage() {
           {loading ? 'Autenticando...' : 'Ingresar y Obtener JWT'}
         </button>
       </form>
+      <p><Link to="/registro">Crear una cuenta</Link></p>
     </div>
   );
-}
+}

@@ -1,38 +1,5 @@
-import { useState, type FormEvent } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import RegistroForm from '../components/Registro/RegistroUsuario';
-import { useAuth, type RolUsuario } from '../context/AuthContext';
-
-export function LoginPage() {
-  const navigate = useNavigate();
-  const { loginSimulado } = useAuth();
-  const [correo, setCorreo] = useState('usuario@sena.edu.co');
-  const [rol, setRol] = useState<RolUsuario>('Aprendiz');
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    loginSimulado(correo, rol);
-    navigate('/dashboard', { replace: true });
-  };
-
-  return (
-    <main>
-      <h1>Iniciar sesión</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="correo">Correo institucional</label>
-        <input id="correo" type="email" value={correo} onChange={(event) => setCorreo(event.target.value)} required />
-        <label htmlFor="rol">Rol</label>
-        <select id="rol" value={rol} onChange={(event) => setRol(event.target.value as RolUsuario)}>
-          <option value="Aprendiz">Aprendiz</option>
-          <option value="Instructor">Instructor</option>
-          <option value="Administrador">Administrador</option>
-        </select>
-        <button type="submit">Entrar</button>
-      </form>
-      <p><Link to="/registro">Crear una cuenta</Link></p>
-    </main>
-  );
-}
 
 export function RegistroPage() {
   return (

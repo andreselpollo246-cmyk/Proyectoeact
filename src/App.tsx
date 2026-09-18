@@ -1,11 +1,13 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './layaouts/MainLayout/MainLayout';
 import DashboardPage from './pages/DashboardPages/DashboasrdPages';
-import { LoginPage, RegistroPage, SectionPage } from './pages/Page';
+import { RegistroPage } from './pages/Page';
+import LoginPage from './pages/LoginPage/LoginPage';
 import EquiposPage from './pages/EquiposPages/EquiposPages';
 import DetalleEquipoPage from './pages/DetalleEquipoPage/DetalleEquipoPage';
 import NuevoEquipoPage from './pages/NuevoEquipoPage/NuevoEquipoPage';
 import { ProtectedRoute } from './routes/ProtectedRoute';
+import { PrestamosPage } from './pages';
 
 export default function App() {
   return (
@@ -18,8 +20,7 @@ export default function App() {
           <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="inventario" element={<EquiposPage />} />
-          <Route path="prestamos" element={<SectionPage title="Préstamos" />} />
-          <Route path="ticketera" element={<SectionPage title="Ticketera" />} />
+          <Route path="prestamos" element={<PrestamosPage />} />
 
           <Route element={<ProtectedRoute requiredRole="Administrador" />}>
             <Route path="inventario/nuevo" element={<NuevoEquipoPage />} />

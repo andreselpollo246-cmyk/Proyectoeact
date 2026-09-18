@@ -4,18 +4,27 @@
 //Encapsula las peticiones HTTP al API de autenticación.
 // =================================================================
 import { apiFetch } from './api';
-import type { Usuario } from '../context/AuthContext';
+import type { RolUsuario } from '../context/AuthContext';
 
 export interface LoginCredentials {
   email: string;
   password: string;
 }
 
+// Forma EXACTA en que el backend devuelve al usuario (server.js -> /auth/login)
+export interface UsuarioApi {
+  id: number;
+  nombreCompleto: string;
+  email: string;
+  role: RolUsuario;
+  ficha?: string;
+}
+
 export interface AuthResponse {
   statusCode: number;
   message: string;
   accessToken: string;
-  user: Usuario;
+  user: UsuarioApi;
 }
 
 export const authService = {

@@ -8,6 +8,7 @@ export default function NavBar() {
         <nav>
           <Link to="/dashboard">Dashboard</Link>
           <Link to="/inventario">Inventario Equipos</Link>
+          <Link to="/prestamos">Préstamos</Link>
         </nav>
       </div>
     </header>

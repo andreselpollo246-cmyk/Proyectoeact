@@ -16,10 +16,23 @@ export async function apiFetch<T>(endpoint: string, options: RequestInit = {}): 
     headers['Authorization'] = `Bearer ${token}`;
   }
 
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, { ...options, headers });
-  const data = await response.json();
+  let response: Response;
+  try {
+    response = await fetch(`${API_BASE_URL}${endpoint}`, { ...options, headers });
+  } catch {
+    // fetch solo lanza aquí cuando NO hay conexión con el servidor (apagado, puerto equivocado, CORS bloqueado)
+    throw new Error(`No se pudo conectar con el servidor (${API_BASE_URL}). ¿Está corriendo el backend?`);
+  }
+
+  const data = await response.json().catch(() => ({}));
 
   if (!response.ok) {
+    // Token vencido/ inválido con sesión abierta: limpiamos y mandamos al login
+    if (response.status === 401 && token) {
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('spacehub_user');
+      window.location.href = '/login';
+    }
     throw new Error(data.message || 'Error en la comunicación con la API REST');
   }
   return data as T;
