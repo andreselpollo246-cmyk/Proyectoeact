@@ -1,0 +1,6 @@
+.dashboard-page .stats-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+.dashboard-page .stat-card{transition:transform .2s,border-color .2s;}
+.dashboard-page .stat-card:hover{transform:translateY(-3px);border-color:#35516a;}
+.dashboard-page .welcome-card{min-height:190px;}
+@media(max-width:800px){.dashboard-page .stats-grid{grid-template-columns:1fr}.dashboard-page .welcome-card{gap:24px}.dashboard-page .welcome-orb{flex:0 0 auto}}
+@media(max-width:520px){.dashboard-page .welcome-card{padding:22px}.dashboard-page .welcome-orb{display:none}}

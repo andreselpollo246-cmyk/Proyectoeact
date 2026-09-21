@@ -1,19 +1,4 @@
-form {
-  max-width: 300px;
-  margin: 40px auto;
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  margin-top: 10px;
-}
-
-input {
-  padding: 6px;
-}
-
-button {
-  margin-top: 15px;
-  padding: 8px;
-}
+.registro-form{width:100%;max-width:520px;margin:0 auto;}
+.registro-form .field{margin:0;}
+.registro-form .primary-button{margin-top:4px;}
+@media(max-width:560px){.registro-form{padding:24px}.registro-form h2{font-size:25px}}

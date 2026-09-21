@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { equiposService } from '../../services/equiposService';
+import './NuevoEquipoPage.css';
 
 export default function NuevoEquipoPage() {
   const [placaSena, setPlacaSena] = useState('');
@@ -23,7 +24,7 @@ export default function NuevoEquipoPage() {
   };
 
   return (
-    <div className="page-section form-page">
+    <div className="page-section form-page nuevo-equipo-page">
       <span className="eyebrow">INVENTARIO / NUEVO</span><h1>Registrar nuevo equipo</h1>
       <p className="page-lead">Añade un recurso al inventario tecnológico.</p>
       {error && <div className="form-error">{error}</div>}

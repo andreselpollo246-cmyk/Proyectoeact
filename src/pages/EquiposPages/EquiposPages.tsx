@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { equiposService, type Equipo } from '../../services/equiposService';
 import { useAuth } from '../../context/AuthContext';
+import './EquiposPages.css';
 
 export default function EquiposPage() {
   const [equipos, setEquipos] = useState<Equipo[]>([]);
@@ -35,7 +36,7 @@ export default function EquiposPage() {
   };
 
   return (
-    <div className="page-section">
+    <div className="page-section equipos-page">
       <div className="page-heading">
         <div>
           <span className="eyebrow">RECURSOS TECNOLÓGICOS</span><h1>Inventario de equipos</h1>

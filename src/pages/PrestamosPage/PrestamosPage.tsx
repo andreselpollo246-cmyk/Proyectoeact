@@ -4,6 +4,7 @@ import { equiposService, type Equipo } from '../../services/equiposService';
 import { useAuth } from '../../context/AuthContext';
 import PrestamoModal from '../../components/PrestamoModal/PrestamoModal';
 import Swal from 'sweetalert2';
+import './PrestamosPage.css';
 
 export default function PrestamosPage() {
   const [prestamos, setPrestamos] = useState<Prestamo[]>([]);
@@ -87,55 +88,55 @@ export default function PrestamosPage() {
 
   // --- INTERFAZ: Listado de préstamos ---
   return (
-    <div className="space-y-6">
+    <div className="prestamos-page">
       {/* Encabezado con botón para nuevo préstamo */}
-      <div className="p-6 bg-slate-800 border border-slate-700 rounded-2xl text-white shadow-xl flex justify-between items-center">
+      <div className="prestamos-page__header">
         <div>
-          <h2 className="text-xl font-bold text-sena">Gestión de Préstamos</h2>
-          <p className="text-xs text-slate-400">Control de asignación y devoluciones de equipos de cómputo.</p>
+          <h2 className="prestamos-page__title">Gestión de Préstamos</h2>
+          <p className="prestamos-page__description">Control de asignación y devoluciones de equipos de cómputo.</p>
         </div>
-        <button onClick={() => setIsModalOpen(true)} className="px-4 py-2.5 bg-sena hover:bg-emerald-600 text-slate-900 font-extrabold rounded-xl text-xs transition shadow-lg">
+        <button onClick={() => setIsModalOpen(true)} className="prestamos-page__new">
           + Nuevo Préstamo
         </button>
       </div>
 
       {/* Tabla de préstamos (FASE 1) */}
-      <div className="p-6 bg-slate-800 border border-slate-700 rounded-2xl text-white shadow-xl">
-        <h2 className="text-xl font-bold text-sena mb-4">Historial de Préstamos Activos</h2>
+      <div className="prestamos-page__panel">
+        <h2 className="prestamos-page__panel-title">Historial de Préstamos Activos</h2>
         
-        {error && <div className="p-3 mb-4 bg-rose-900/80 border border-rose-500 rounded-xl text-rose-200 text-xs font-mono">{error}</div>}
+        {error && <div className="form-error">{error}</div>}
 
         {loading ? (
-          <div className="text-center py-8 text-slate-400 font-mono text-xs animate-pulse">Conectando con el servidor...</div>
+          <div className="loading-state">Conectando con el servidor...</div>
         ) : (
-          <div className="overflow-x-auto rounded-xl border border-slate-700">
-            <table className="w-full text-left text-xs font-mono">
-              <thead className="bg-slate-900 text-slate-400 uppercase">
+          <div className="prestamos-page__table-wrap">
+            <table className="prestamos-page__table">
+              <thead className="prestamos-page__thead">
                 <tr>
-                  <th className="p-3">Aprendiz / Ficha</th>
-                  <th className="p-3">Equipo (Placa)</th>
-                  <th className="p-3">Hora Salida</th>
-                  <th className="p-3">Estado</th>
+                  <th className="prestamos-page__cell">Aprendiz / Ficha</th>
+                  <th className="prestamos-page__cell">Equipo (Placa)</th>
+                  <th className="prestamos-page__cell">Hora Salida</th>
+                  <th className="prestamos-page__cell">Estado</th>
                   <th className="p-3 text-right">Acciones</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-700/60">
                 {prestamos.map((p) => (
                   <tr key={p.id} className="hover:bg-slate-750/50 transition-colors">
-                    <td className="p-3 text-white font-sans">
-                      {p.aprendiz} <span className="text-slate-500 block text-[10px]">Ficha: {p.ficha}</span>
+                    <td className="prestamos-page__cell">
+                      {p.aprendiz} <span className="prestamos-page__student-ficha">Ficha: {p.ficha}</span>
                     </td>
-                    <td className="p-3 text-sena font-bold">{p.equipoPlaca}</td>
-                    <td className="p-3 text-slate-400">{p.horaInicio}</td>
-                    <td className="p-3">
-                      <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold ${p.estado === 'Activo' ? 'bg-sky-500/20 text-sky-400' : 'bg-slate-500/20 text-slate-400'}`}>
+                    <td className="prestamos-page__cell prestamos-page__plate">{p.equipoPlaca}</td>
+                    <td className="prestamos-page__cell">{p.horaInicio}</td>
+                    <td className="prestamos-page__cell">
+                      <span className={`prestamos-page__status ${p.estado === 'Activo' ? 'prestamos-page__status--active' : 'prestamos-page__status--closed'}`}>
                         {p.estado}
                       </span>
                     </td>
                     {/* Botón de devolución (FASE 2) */}
-                    <td className="p-3 text-right font-sans">
+                    <td className="prestamos-page__cell prestamos-page__actions">
                       {p.estado === 'Activo' && isAdmin && (
-                        <button onClick={() => handleDevolver(p.id)} className="px-3 py-1.5 bg-slate-700 hover:bg-sky-600 rounded-lg text-xs font-bold transition shadow">
+                        <button onClick={() => handleDevolver(p.id)} className="prestamos-page__return">
                           Devolver
                         </button>
                       )}
@@ -144,7 +145,7 @@ export default function PrestamosPage() {
                 ))}
                 {prestamos.length === 0 && (
                   <tr>
-                    <td colSpan={5} className="p-6 text-center text-slate-500 font-sans">No hay préstamos registrados.</td>
+                    <td colSpan={5} className="prestamos-page__empty">No hay préstamos registrados.</td>
                   </tr>
                 )}
               </tbody>

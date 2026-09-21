@@ -1,3 +1,5 @@
+import './DashboardPages.css';
+
 export default function DashboardPage() {
 	return (
 		<section className="page-section dashboard-page">

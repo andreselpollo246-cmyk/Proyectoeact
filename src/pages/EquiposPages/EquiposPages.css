@@ -1,0 +1,6 @@
+.equipos-page .page-heading>a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:#75d33c;color:#071307;border-radius:9px;padding:12px 16px;font-size:12px;font-weight:800;white-space:nowrap;}
+.equipos-page .page-heading>a:hover{filter:brightness(1.08);}
+.equipos-page .table-card{box-shadow:0 18px 45px rgba(0,0,0,.14);}
+.equipos-page td:first-child{font-family:var(--mono);color:#75d33c;font-weight:700;}
+.equipos-page td button{border:0;cursor:pointer;padding:0;}
+@media(max-width:650px){.equipos-page .page-heading{flex-direction:column}.equipos-page .page-heading>a{width:100%}}

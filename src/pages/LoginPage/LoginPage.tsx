@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import './LoginPage.css';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -25,7 +26,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="auth-page">
+    <div className="auth-page login-page">
       <div className="auth-decoration"><span>SENA</span><strong>SpaceHub</strong><p>Gestiona tu inventario<br />de forma inteligente.</p></div>
       <div className="auth-card">
         <span className="eyebrow">ACCESO SEGURO</span>
@@ -49,4 +50,4 @@ export default function LoginPage() {
       </div>
     </div>
   );
-}
+}

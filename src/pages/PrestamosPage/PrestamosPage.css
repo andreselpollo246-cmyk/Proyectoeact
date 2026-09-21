@@ -1,0 +1,20 @@
+.prestamos-page{display:flex;flex-direction:column;gap:20px;}
+.prestamos-page__header,.prestamos-page__panel{background:linear-gradient(145deg,rgba(20,37,54,.9),rgba(13,27,42,.9));border:1px solid #24384b;border-radius:16px;padding:25px;color:#e8eef5;}
+.prestamos-page__header{display:flex;justify-content:space-between;align-items:center;gap:20px;}
+.prestamos-page__header h2,.prestamos-page__panel h2{margin:0 0 6px;color:#75d33c;font-size:20px;}
+.prestamos-page__header p{margin:0;color:#8295a8;font-size:12px;}
+.prestamos-page__new{border:0;background:#75d33c;color:#071307;border-radius:9px;padding:11px 15px;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap;}
+.prestamos-page__table-wrap{overflow-x:auto;border:1px solid #24384b;border-radius:11px;}
+.prestamos-page table{min-width:700px;}
+.prestamos-page th{background:#0c1926;}
+.prestamos-page td{font-family:var(--mono);}
+.prestamos-page td:first-child{font-family:inherit;color:#fff;}
+.prestamos-page__student-ficha{display:block;color:#61758a;font-size:10px;margin-top:3px;}
+.prestamos-page__status{display:inline-block;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:700;}
+.prestamos-page__status--active{color:#68c7ff;background:rgba(51,160,220,.16);}
+.prestamos-page__status--closed{color:#8295a8;background:rgba(130,149,168,.14);}
+.prestamos-page__return{border:0;background:#1a2c3d;color:#c5d1db;border-radius:7px;padding:7px 10px;font-size:11px;font-weight:700;cursor:pointer;}
+.prestamos-page__return:hover{background:#21435c;}
+.prestamos-page__empty{text-align:center;color:#8295a8;padding:35px!important;}
+@media(max-width:650px){.prestamos-page__header{flex-direction:column;align-items:stretch}.prestamos-page__new{width:100%}.prestamos-page__header,.prestamos-page__panel{padding:20px}}
+.prestamos-page__title{margin:0 0 6px;color:#75d33c;font-size:20px;}.prestamos-page__description{margin:0;color:#8295a8;font-size:12px;}.prestamos-page__panel-title{margin:0 0 16px;color:#75d33c;font-size:18px;}.prestamos-page__thead th{background:#0c1926;}.prestamos-page__plate{color:#75d33c;font-weight:700;}.prestamos-page__actions{text-align:right;}

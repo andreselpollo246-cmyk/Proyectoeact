@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { equiposService, type Equipo } from '../../services/equiposService';
+import './DetalleEquipoPage.css';
 
 export default function DetalleEquipoPage() {
   const { placaSena } = useParams<{ placaSena: string }>();
@@ -39,7 +40,7 @@ export default function DetalleEquipoPage() {
   if (!equipo && !error) return <div className="loading-state">Cargando recurso...</div>;
 
   return (
-    <div className="page-section form-page">
+    <div className="page-section form-page detalle-equipo-page">
       <span className="eyebrow">INVENTARIO / EDITAR</span><h1>Editar equipo</h1>
       <p className="page-lead">Placa SENA: <strong>{placaSena}</strong></p>
       {error && <div className="form-error">{error}</div>}

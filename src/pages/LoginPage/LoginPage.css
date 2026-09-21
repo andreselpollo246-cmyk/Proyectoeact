@@ -1,0 +1,5 @@
+.login-page{min-height:100vh;}
+.login-page .auth-card{width:100%;max-width:520px;}
+.login-page .primary-button{min-height:44px;}
+.login-page .field input::placeholder{color:#0a72e0;}
+@media(max-width:760px){.login-page{grid-template-columns:1fr;gap:20px;max-width:560px}.login-page .auth-decoration{text-align:center;padding:10px}.login-page .auth-decoration strong{font-size:30px}.login-page .auth-card{padding:28px}}

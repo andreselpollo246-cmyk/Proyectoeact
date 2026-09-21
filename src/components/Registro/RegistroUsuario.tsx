@@ -1,4 +1,5 @@
 import { useState, type FormEvent, type ChangeEvent } from "react";
+import "./RegistroUsuario.css";
 
 interface RegistroData {
   nombreCompleto: string;
@@ -25,7 +26,7 @@ export default function RegistroForm() {
   };
 
   return (
-    <form className="auth-card form-stack" onSubmit={handleSubmit}>
+    <form className="auth-card form-stack registro-form" onSubmit={handleSubmit}>
       <span className="eyebrow">NUEVO USUARIO</span>
       <h2>Crear cuenta</h2>
       <p className="auth-subtitle">Regístrate para acceder a SpaceHub.</p>
