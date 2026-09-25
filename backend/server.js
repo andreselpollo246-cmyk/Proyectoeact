@@ -173,11 +173,11 @@ app.put('/api/v1/prestamos/:id/devolver', authenticateToken, (req, res) => {
 app.get('/api/v1/dashboard/stats', authenticateToken, (req, res) => {
   const totalEquipos = EQUIPOS.length;
   const equiposOperativos = EQUIPOS.filter(e => e.estado === 'Operativo').length;
-  const equiposMantenimiento = EQUIPOS.filter(e => e.estado === 'Mantenimiento' || e.estado === 'Dañado').length;
+  const equiposMantenimiento = EQUIPOS.filter(e => e.estado === 'En Mantenimiento' || e.estado === 'Mantenimiento' || e.estado === 'Dañado').length;
   const prestamosActivos = PRESTAMOS.filter(p => p.estado === 'Activo').length;
   
   const incidenciasAlta = EQUIPOS.filter(e => e.estado === 'Dañado').length;
-  const incidenciasMedia = EQUIPOS.filter(e => e.estado === 'Mantenimiento').length;
+  const incidenciasMedia = EQUIPOS.filter(e => e.estado === 'En Mantenimiento' || e.estado === 'Mantenimiento').length;
 
   res.json({
     totalEquipos,
@@ -190,13 +190,34 @@ app.get('/api/v1/dashboard/stats', authenticateToken, (req, res) => {
       alta: incidenciasAlta,
       media: incidenciasMedia
     },
-    laboratoriosOcupacion: [
-      { nombre: 'Ambiente 301 - Desarrollo Web (ADSO)', porcentaje: 90, activo: true },
-      { nombre: 'Ambiente 302 - Redes y Bases de Datos', porcentaje: 75, activo: true },
-      { nombre: 'Ambiente 303 - Mantenimiento Hardware', porcentaje: 40, activo: false }
-    ]
+    laboratoriosOcupacion: getOcupacionPorAmbiente()
   });
 });
+
+// Calcula, para cada ambiente registrado en EQUIPOS, qué porcentaje de sus
+// equipos está actualmente prestado (préstamo con estado 'Activo').
+function getOcupacionPorAmbiente() {
+  const porAmbiente = {};
+  EQUIPOS.forEach(e => {
+    if (!porAmbiente[e.ambiente]) porAmbiente[e.ambiente] = { total: 0, prestados: 0 };
+    porAmbiente[e.ambiente].total += 1;
+  });
+
+  const placasPrestadas = new Set(
+    PRESTAMOS.filter(p => p.estado === 'Activo').map(p => p.equipoPlaca.toUpperCase())
+  );
+  EQUIPOS.forEach(e => {
+    if (placasPrestadas.has(e.placaSena.toUpperCase())) {
+      porAmbiente[e.ambiente].prestados += 1;
+    }
+  });
+
+  return Object.entries(porAmbiente).map(([nombre, { total, prestados }]) => ({
+    nombre,
+    porcentaje: total > 0 ? Math.round((prestados / total) * 100) : 0,
+    activo: prestados > 0
+  }));
+}
 
 
 if (require.main === module) {

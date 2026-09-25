@@ -1,5 +1,5 @@
-.login-page{min-height:100vh;}
+.login-page.auth-page{position:relative;isolation:isolate;display:grid;width:100%;max-width:none;min-height:100vh;min-height:100svh;margin:0;padding:40px clamp(24px,8vw,120px);background-color:#08111d;background-image:linear-gradient(90deg,rgba(4,12,20,.72),rgba(4,12,20,.32)),url('https://assets.realmadrid.com/is/image/realmadrid/1330603286208');background-position:center 25%;background-size:cover;background-repeat:no-repeat;}
 .login-page .auth-card{width:100%;max-width:520px;}
 .login-page .primary-button{min-height:44px;}
 .login-page .field input::placeholder{color:#0a72e0;}
-@media(max-width:760px){.login-page{grid-template-columns:1fr;gap:20px;max-width:560px}.login-page .auth-decoration{text-align:center;padding:10px}.login-page .auth-decoration strong{font-size:30px}.login-page .auth-card{padding:28px}}
+@media(max-width:760px){.login-page.auth-page{grid-template-columns:1fr;gap:20px;padding:24px 20px;background-position:62% 25%}.login-page .auth-decoration{text-align:center;padding:10px}.login-page .auth-decoration strong{font-size:30px}.login-page .auth-card{padding:28px}}
